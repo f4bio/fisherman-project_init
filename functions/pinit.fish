@@ -52,7 +52,7 @@ function pinit -d "setup project"
 
 	sed -i "s/{{PROJECT_NAME}}/$project_name/g" {README.md,LICENSE,.editorconfig,.gitignore}
 	sed -i "s/{{PROJECT_DESCRIPTION}}/$project_description/g" {README.md,LICENSE,.editorconfig,.gitignore}
-	sed -i "s/{{USER_USERNAME}}/$project_username/g" {README.md,LICENSE,.editorconfig,.gitignore}
+	sed -i "s/{{USER_NAME}}/$project_username/g" {README.md,LICENSE,.editorconfig,.gitignore}
 	sed -i "s/{{USER_EMAIL}}/$project_email/g" {README.md,LICENSE,.editorconfig,.gitignore}
 
   __project_init_log "initializing repo"

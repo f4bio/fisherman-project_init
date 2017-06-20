@@ -2,12 +2,16 @@ function __project_init_usage
     # set -l uline (set_color -u)
     # set -l nc (set_color normal)
 
-    echo "Usage: pinit [--verbose] <DIRECTORY>"
+    echo "Usage: pinit [--verbose]"
+		echo -e "\t--name <NAME> --description <DESCRIPTION>"
+		echo -e "\t--username <USERNAME> --email <EMAIL>"
+		echo -e "\t<DIRECTORY>"
     echo
-    echo "where ALGORITHM can be one of:"
-    echo "       \"md5\"  generate .md5 file"
-    echo "       \"sha1\"  generate .sha1 file"
-    echo "       \"sha3\"  generate .sha3 file"
+    echo "where NAME is the project name"
+    echo "where DESCRIPTION is the project description"
+    echo "where USERNAME is the project username"
+    echo "where EMAIL is the project email"
+    echo "where DIRECTORY is the project directory"
     # echo "       "$uline"u"$nc"se  Use the given node version (default)"
     # echo "       "$uline"r"$nc"m   Remove the given node version/s"
     # echo "       "$uline"l"$nc"s   List the available node version/s"
