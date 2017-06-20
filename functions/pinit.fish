@@ -1,4 +1,5 @@
 function pinit -d "setup project"
+  set -g pinit_version 0.0.1
   set -l current_dir (pwd)
   set -e project_directory
   set -e project_name
@@ -15,14 +16,18 @@ function pinit -d "setup project"
         __project_init_usage > /dev/stderr
         return
       case -v --version version
-        echo -e "\nv$hashfile_version (using: $rhash_version)\n"
+        echo -e "\nv$pinit_version\n"
         return
       case --verbose
         set -g verbose 1
-        break
       case --name -n
         set project_name $argv[$idx+1]
-        break
+			case --description -d
+        set project_description $argv[$idx+1]
+			case --username -u
+        set project_username $argv[$idx+1]
+			case --email -e
+        set project_email $argv[$idx+1]
     end
   end
 
@@ -40,10 +45,15 @@ function pinit -d "setup project"
   cd $project_directory
 
   __project_init_log "fetching files..."
-  curl -o README.md https://raw.githubusercontent.com/f4bio/git-files/master/_README.md
-  curl -o LICENSE https://raw.githubusercontent.com/f4bio/git-files/master/_LICENSE
-  curl -o .editorconfig https://raw.githubusercontent.com/f4bio/git-files/master/_editorconfig
-  curl -o .gitconfig https://raw.githubusercontent.com/f4bio/git-files/master/_gitconfig
+  curl -o README.md https://raw.githubusercontent.com/f4bio/project-files/master/_README.md
+  curl -o LICENSE https://raw.githubusercontent.com/f4bio/project-files/master/_LICENSE
+  curl -o .editorconfig https://raw.githubusercontent.com/f4bio/project-files/master/_editorconfig
+  curl -o .gitignore https://raw.githubusercontent.com/f4bio/project-files/master/_gitignore
+
+	sed -i "s/{{PROJECT_NAME}}/$project_name/g" {README.md,LICENSE,.editorconfig,.gitignore}
+	sed -i "s/{{PROJECT_DESCRIPTION}}/$project_description/g" {README.md,LICENSE,.editorconfig,.gitignore}
+	sed -i "s/{{USER_USERNAME}}/$project_username/g" {README.md,LICENSE,.editorconfig,.gitignore}
+	sed -i "s/{{USER_EMAIL}}/$project_email/g" {README.md,LICENSE,.editorconfig,.gitignore}
 
   __project_init_log "initializing repo"
   git init

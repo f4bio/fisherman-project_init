@@ -5,6 +5,11 @@
 
 setup project
 
+## TODO: 
+```
+curl --user "f4bio" https://api.github.com/user/repos --data "{\"name\":\"fisherman-pacaur\"}" --silent
+```
+
 ## Install
 
 With [fisherman]
